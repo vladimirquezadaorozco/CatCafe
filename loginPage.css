@@ -8,7 +8,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('./images/kitty-background.jpg'); /* Asegúrate de cambiar esta ruta por la ruta real de tu imagen de fondo */
+    background-image: url('https://png.pngtree.com/png-clipart/20230511/ourmid/pngtree-isolated-cat-on-white-background-png-image_7094927.png'); 
     background-size: cover;
     background-position: center;
 }
@@ -49,7 +49,6 @@ button[type="submit"]:hover {
     background-color: #45a049;
 }
 
-/* Opcional: Puedes agregar un poco de margen en la parte superior para evitar que el formulario toque exactamente el centro vertical */
 main {
     margin-top: -50px;
 }
