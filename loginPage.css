@@ -1,0 +1,55 @@
+/* Establecer el fondo y el estilo general */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('./images/kitty-background.jpg'); /* Asegúrate de cambiar esta ruta por la ruta real de tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Estilizar el contenedor del formulario */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Estilizar los inputs */
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* Estilizar el botón de submit */
+button[type="submit"] {
+    background-color: #4CAF50; /* Color verde */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Opcional: Puedes agregar un poco de margen en la parte superior para evitar que el formulario toque exactamente el centro vertical */
+main {
+    margin-top: -50px;
+}
