@@ -1,40 +1,89 @@
-document.addEventListener('DOMContentLoaded', () => {//Asi nos aseguramos de que el script se ejecuta despues de que el HTML se carga completamente
-    const loginForm = document.getElementById('loginForm');  // Obtenemos el formulario por el ID
+document.addEventListener('DOMContentLoaded', () => { 
+  const loginButton = document.getElementById('loginButton'); // Botón de login
+  const registerButton = document.getElementById('registerButton'); // Botón de registro
   
-    loginForm.addEventListener('submit', function(event) {   // Añadir un manejador de evento 'submit' al formulario
-      event.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
-  
-      const username = document.getElementById('username').value; // Obtener el valor ingresado en el input de usuario
-      const password = document.getElementById('password').value;  // Obtener el valor ingresado en el input de contraseña
-        
-      // Crear un objeto con los datos de usuario y contraseña
-      const loginData = {
-        username: username, // clave 'username' se asigna al valor de la variable username
-        password: password , // clave 'password' se asigna al valor de la variable password
-      };
-  
-      fetch('http://127.0.0.1:5000/login', {  // Usar 'fetch' para enviar una solicitud POST al servidor LOCAL
-        method: 'POST', // Método HTTP para enviar datos
-        headers: {
-          'Content-Type': 'application/json', // Indicar que el tipo de contenido es JSON
-        },
-        body: JSON.stringify(loginData), // Convertir el objeto loginData a una cadena JSON
-      })
-      .then(response => {
-        // Revisa si la respuesta del servidor es satisfactoria
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        } else {
-          return response.json(); // Si quieres procesar la respuesta como JSON
-        }
-      })
-      .then(data => {
-        // Aquí puedes manejar la respuesta. En este caso, solamente despliega un mensaje de exito en la consola
-        console.log('Success:', data);
-      })
-      .catch(error => {
-        // Si ocurre un error en la solicitud o en la respuesta, lo capturas aquí
-        console.error('Error during fetch:', error);
-      });
+  // Función para manejar el registro
+  function handleRegister(event) {
+    event.preventDefault(); // Prevenir el comportamiento predeterminado
+
+    // Recoger los datos de los campos del formulario
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    // Crear el objeto con los datos
+    const registerData = {
+      username: username,
+      password: password,
+    };
+
+    // Enviar los datos al servidor para el registro
+    fetch('http://127.0.0.1:5000/register', { 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(registerData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Registration Success:', data);
+      // Manejar el éxito del registro, por ejemplo, mostrando un mensaje al usuario
+    })
+    .catch(error => {
+      console.error('Registration Error:', error);
+      // Manejar el error de registro
     });
-  });
+  }
+
+
+  // Función para manejar el login
+  function handleLogin(event) {
+    event.preventDefault(); // Prevenir el comportamiento predeterminado
+
+    // Recoger los datos de los campos del formulario
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    // Crear el objeto con los datos
+    const loginData = {
+      username: username,
+      password: password,
+    };
+
+    // Enviar los datos al servidor para el login
+    fetch('http://127.0.0.1:5000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(loginData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data.message);
+      // Redireccionando al usuario a otra página
+      if (data.message === "Login successful") {
+        // Si el login es exitoso, redirige al usuario a "indexAdmin.html"
+        window.location.href = 'indexAdmin.html';
+      } else {
+        // Si el login no es exitoso, muestra un mensaje de error
+        // Aquí podrás colocar el código para mostrar el mensaje de error en la UI
+        // Esto lo ajustaremos después de ver tu código HTML para el login
+        console.error('Login Failed:', data.message);
+        // Por ahora, podrías por ejemplo cambiar el contenido de un elemento de mensaje de error en tu HTML así:
+        // document.getElementById('error-message').textContent = data.message;
+      }
+
+
+
+    })
+    .catch(error => {
+      console.error('Login Error:', error);
+      // Manejar el error de login
+    });
+  }
+
+  // Añadir manejadores de evento a los botones
+  registerButton.addEventListener('click', handleRegister);
+  loginButton.addEventListener('click', handleLogin);
+});

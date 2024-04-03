@@ -11,7 +11,7 @@ CORS(app, resources={r"/*": {"origins": "*"}}) # Permitir solicitudes desde cual
 
 
 #RUTA PARA EL LOGIN DEL ADMINISTRADOR
-@app.route('/login', methods=["POST"])
+@app.route('/register', methods=["POST"])
 def login_admin():
     data = request.get_json()  # Asumiendo que los datos se envían como JSON
     username = data['username']
@@ -35,6 +35,32 @@ def login_admin():
         con.close()
     
     
+@app.route('/login', methods=["POST"])
+def login_admin():
+    data = request.get_json()  # Asumiendo que los datos se envían como JSON
+    username = data['username']
+    password = data['password']
+
+    # Conectar a la base de datos para verificar las credenciales en la tabla admins
+    con = sqlite3.connect("catcafe.db")
+    con.row_factory = sqlite3.Row  # Facilita el acceso a las columnas por nombre
+    cur = con.cursor()
+
+    # Verificar si existe un registro con el username y password proporcionados
+    cur.execute("SELECT * FROM admins WHERE user = ? AND password = ?", (username, password))
+    admin = cur.fetchone()
+
+    cur.close()
+    con.close()
+
+    if admin:
+        # Si se encontró un registro, las credenciales son correctas
+        return jsonify(message="Login successful"), 200
+    else:
+        # Si no se encontró un registro, las credenciales son incorrectas
+        return jsonify(message="Invalid username or password"), 401
+
+
 # @app.route('/getTables', methods=["GET"])
 # def loginAdmin():
 #     con = sqlite3.connect("catcafe.db")
