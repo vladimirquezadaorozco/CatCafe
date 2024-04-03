@@ -12,6 +12,15 @@ body {
     background-position: center;
 }
 
+/* Estilizar los inputs */
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
 /* Estilizar el contenedor del formulario */
 .login-container {
     background-color: rgba(255, 255, 255, 0.8);
@@ -24,14 +33,6 @@ body {
     gap: 20px;
 }
 
-/* Estilizar los inputs */
-input[type="text"],
-input[type="password"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-}
 
 /* Estilizar el botón de submit */
 button[type="submit"] {
@@ -44,9 +45,44 @@ button[type="submit"] {
     transition: background-color 0.3s;
 }
 
-button[type="submit"]:hover {
-    background-color: #45a049;
+
+/* Estilos generales para los botones dentro de .form-buttons */
+.form-buttons button {
+    flex: 1; /* Distribuye el espacio igualmente */
+    margin: 5px; /* Añade un pequeño margen entre los botones */
+    padding: 10px 0; /* Añade algo de padding vertical para hacerlos más altos */
+    border: none; /* Remueve el borde */
+    border-radius: 5px; /* Añade bordes redondeados */
+    color: white; /* Texto blanco para ambos botones */
+    font-size: 16px; /* Un tamaño de letra legible */
+    cursor: pointer; /* Cambia el cursor a un puntero */
+    transition: background-color 0.3s; /* Suaviza el cambio de color */
+    margin-right: 20px;
+    margin-left: 25px;
 }
+
+/* Estilo específico para el botón de login */
+.btn-login {
+    background-color: #4CAF50; /* Verde */
+    width: 100px;
+    text-align: center;
+}
+
+.btn-login:hover {
+    background-color: #45a049; /* Un verde un poco más oscuro al pasar el mouse */
+}
+
+/* Estilo específico para el botón de registrar */
+.btn-register {
+    background-color: #007bff; /* Azul */
+    width: 100px;
+    text-align: center;
+}
+
+.btn-register:hover {
+    background-color: #0069d9; /* Un azul un poco más oscuro al pasar el mouse */
+}
+
 
 main {
     margin-top: -50px;
