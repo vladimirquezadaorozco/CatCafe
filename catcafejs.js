@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {//Asi nos aseguramos de que
         password: password , // clave 'password' se asigna al valor de la variable password
       };
   
-      fetch('http://127.0.0.1:5000/login', {  // Usar 'fetch' para enviar una solicitud POST al servidor
+      fetch('http://127.0.0.1:5000/login', {  // Usar 'fetch' para enviar una solicitud POST al servidor LOCAL
         method: 'POST', // Método HTTP para enviar datos
         headers: {
           'Content-Type': 'application/json', // Indicar que el tipo de contenido es JSON
