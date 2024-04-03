@@ -7,18 +7,18 @@ import sqlite3
 
 app = Flask(__name__)
 
+#CORS(app, resources={r"/api/*": {"origins": "http://127.0.0.1:5000"}}, supports_credentials=True)
 CORS(app, resources={r"/*": {"origins": "*"}}) # Permitir solicitudes desde cualquier origen en cualquier ruta
-
 
 #RUTA PARA EL LOGIN DEL ADMINISTRADOR
 @app.route('/register', methods=["POST"])
-def login_admin():
+def register_admin():
     data = request.get_json()  # Asumiendo que los datos se envían como JSON
     username = data['username']
     password = data['password']
 
     # Conectar a la base de datos y crear una nueva entrada en la tabla admins
-    con = sqlite3.connect("catcafe.db")
+    con = sqlite3.connect("catcafeserver/catcafe.db")
     cur = con.cursor()
 
     # Aquí debes incluir la lógica para verificar que el usuario no exista ya,
@@ -42,7 +42,7 @@ def login_admin():
     password = data['password']
 
     # Conectar a la base de datos para verificar las credenciales en la tabla admins
-    con = sqlite3.connect("catcafe.db")
+    con = sqlite3.connect("catcafeserver/catcafe.db")
     con.row_factory = sqlite3.Row  # Facilita el acceso a las columnas por nombre
     cur = con.cursor()
 
@@ -71,4 +71,4 @@ def login_admin():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)  # Ejecutamos la aplicación Flask en modo de depuración
+    app.run(debug=True, port=5000)  # Ejecutamos la aplicación Flask en modo de depuración
