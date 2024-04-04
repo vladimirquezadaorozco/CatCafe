@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CatCafe</title>
+    <title>My Page</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,43 +22,47 @@
         <button id="Gato1" class="image-button">
             <img src="./images/1.png" alt="Image 1">
         </button>
+        <p>Information about Cat 1</p>
     </div>
-
     <div class="image-container">
         <h2>Juan</h2>
         <button id="Gato2" class="image-button">
             <img src="./images/2.png" alt="Image 2">
         </button>
+        <p>Information about Cat 2</p>
     </div>
-
     <div class="image-container">
         <h2>Jose Jose</h2>
         <button id="Gato3" class="image-button">
             <img src="./images/3.png" alt="Image 3">
         </button>
+        <p>Information about Cat 3</p>
     </div>
-
     <div class="image-container">
         <h2>Juan Gabriel</h2>
         <button id="Gato4" class="image-button">
             <img src="./images/4.png" alt="Image 4">
         </button>
+        <p>Information about Cat 4</p>
     </div>
-
     <div class="image-container">
         <h2>Ferrrnando</h2>
         <button id="Gato5" class="image-button">
             <img src="./images/5.png" alt="Image 5">
         </button>
+        <p>Information about Cat 5</p>
     </div>
-
     <div class="image-container">
         <h2>Tigre</h2>
         <button id="Gato6" class="image-button">
             <img src="./images/6.png" alt="Image 6">
         </button>
+        <p>Information about Cat 6</p>
     </div>
 </main>
+
+
+
 
 <div class="food-menu">
     <header>
@@ -96,35 +100,7 @@
 
 <footer>
     <p>&copy; 2024 My Website. All rights reserved.</p>
-    <a href="loginPage.html" class="button">Admin Login</a>
 </footer>
 
-<!-- Pop-up container -->
-<div id="popup-container" class="popup-container" style="display:none;">
-    <div class="popup-content">
-        <span class="close-btn">&times;</span>
-        <p id="popup-text">Aquí va la información del gato.</p>
-    </div>
-</div>
-
-<script>
-    // Cuando haces clic en una imagen
-    document.querySelectorAll('.image-button').forEach(button => {
-        button.addEventListener('click', function() {
-            document.getElementById('popup-container').style.display = 'block';
-            // Aquí puedes cambiar el contenido del pop-up según la imagen que se haya clickeado
-            // Por ejemplo, podrías usar `this.querySelector('img').alt` para obtener el texto alternativo de la imagen y mostrarlo
-            document.getElementById('popup-text').textContent = 'Luis Miguel es un gato cariñoso de 1 año en busca de un hogar. Es juguetón y afectuoso, ideal para un hogar sin otros animales. Está esterilizado/castrado, vacunado y desparasitado. Se lleva bien con niños y disfruta tanto de interiores como exteriores. ¿Listo para darle a Luis Miguel un hogar amoroso?';
-        });
-    });
-    
-    // Cuando haces clic en el botón de cerrar
-    document.querySelector('.close-btn').addEventListener('click', function() {
-        document.getElementById('popup-container').style.display = 'none';
-    });
-    </script>
-    <script src="script.js"></script>
-
-    
 </body>
 </html>
