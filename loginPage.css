@@ -1,16 +1,18 @@
 /* Establecer el fondo y el estilo general */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-size: cover;
+    background-image:  url('images/gatitos.png');
+    background-size: cover; /* Asegura que la imagen cubra todo el espacio disponible */
+    background-repeat: no-repeat;
     background-position: center;
 }
+
 
 /* Estilizar los inputs */
 input[type="text"],
@@ -36,7 +38,7 @@ input[type="password"] {
 
 /* Estilizar el botón de submit */
 button[type="submit"] {
-    background-color: #4CAF50; /* Color verde */
+    background-color: #c4a484; /* Color verde */
     color: white;
     padding: 10px;
     border: none;
@@ -63,25 +65,26 @@ button[type="submit"] {
 
 /* Estilo específico para el botón de login */
 .btn-login {
-    background-color: #4CAF50; /* Verde */
+    background-color: #c4a484; 
     width: 100px;
     text-align: center;
 }
 
 .btn-login:hover {
-    background-color: #45a049; /* Un verde un poco más oscuro al pasar el mouse */
+    background-color: #9c7a5a; /* Un tono más claro al pasar el ratón sobre él */
 }
 
 /* Estilo específico para el botón de registrar */
 .btn-register {
-    background-color: #007bff; /* Azul */
+    background-color: #c4a484; 
     width: 100px;
     text-align: center;
 }
 
 .btn-register:hover {
-    background-color: #0069d9; /* Un azul un poco más oscuro al pasar el mouse */
+    background-color: #9c7a5a; /* Un tono más claro al pasar el ratón sobre él */
 }
+
 
 
 main {

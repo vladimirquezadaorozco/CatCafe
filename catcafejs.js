@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => { 
-  const loginButton = document.getElementById('loginButton'); // Botón de login
-  const registerButton = document.getElementById('registerButton'); // Botón de registro
+  const loginButton = document.getElementById('loginB'); // Botón de login
+  const registerButton = document.getElementById('registerB'); // Botón de registro
   
   // Función para manejar el registro
   function handleRegister(event) {
