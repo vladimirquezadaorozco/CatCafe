@@ -22,47 +22,38 @@
         <button id="Gato1" class="image-button">
             <img src="./images/1.png" alt="Image 1">
         </button>
-        <p>Information about Cat 1</p>
     </div>
     <div class="image-container">
         <h2>Juan</h2>
         <button id="Gato2" class="image-button">
             <img src="./images/2.png" alt="Image 2">
         </button>
-        <p>Information about Cat 2</p>
     </div>
     <div class="image-container">
         <h2>Jose Jose</h2>
         <button id="Gato3" class="image-button">
             <img src="./images/3.png" alt="Image 3">
         </button>
-        <p>Information about Cat 3</p>
     </div>
     <div class="image-container">
         <h2>Juan Gabriel</h2>
         <button id="Gato4" class="image-button">
             <img src="./images/4.png" alt="Image 4">
         </button>
-        <p>Information about Cat 4</p>
     </div>
     <div class="image-container">
         <h2>Ferrrnando</h2>
         <button id="Gato5" class="image-button">
             <img src="./images/5.png" alt="Image 5">
         </button>
-        <p>Information about Cat 5</p>
     </div>
     <div class="image-container">
         <h2>Tigre</h2>
         <button id="Gato6" class="image-button">
             <img src="./images/6.png" alt="Image 6">
         </button>
-        <p>Information about Cat 6</p>
     </div>
 </main>
-
-
-
 
 <div class="food-menu">
     <header>
@@ -101,6 +92,24 @@
 <footer>
     <p>&copy; 2024 My Website. All rights reserved.</p>
 </footer>
+<body>
+
+    <!-- Pop-up container modificado para incluir formulario de adopción -->
+    <div id="popup-container" class="popup-container" style="display:none;">
+        <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <p id="popup-text">Completa tu información para adoptar:</p>
+            <form id="adoption-form">
+                <input type="text" id="adopter-name" placeholder="Tu nombre" required>
+                <input type="text" id="adopter-address" placeholder="Tu dirección" required>
+                <input type="button" id="adopt-btn" value="Adoptarme">
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
 
 </body>
 </html>

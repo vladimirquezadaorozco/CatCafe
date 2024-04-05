@@ -29,3 +29,5 @@ document.querySelectorAll('.image-button').forEach(button => {
 document.querySelector('.close-btn').addEventListener('click', function() {
     document.getElementById('popup-container').style.display = 'none';
 });
+
+
