@@ -8,7 +8,7 @@ body {
     align-items: center;
     height: 100vh;
     background-image:  url('images/gatitos.png');
-    background-size: cover; /* Asegura que la imagen cubra todo el espacio disponible */
+    background-size: cover; 
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -38,7 +38,7 @@ input[type="password"] {
 
 /* Estilizar el botón de submit */
 button[type="submit"] {
-    background-color: #c4a484; /* Color verde */
+    background-color: #c4a484;
     color: white;
     padding: 10px;
     border: none;
@@ -71,7 +71,7 @@ button[type="submit"] {
 }
 
 .btn-login:hover {
-    background-color: #9c7a5a; /* Un tono más claro al pasar el ratón sobre él */
+    background-color: #9c7a5a; 
 }
 
 /* Estilo específico para el botón de registrar */
@@ -82,10 +82,8 @@ button[type="submit"] {
 }
 
 .btn-register:hover {
-    background-color: #9c7a5a; /* Un tono más claro al pasar el ratón sobre él */
+    background-color: #9c7a5a; 
 }
-
-
 
 main {
     margin-top: -50px;
