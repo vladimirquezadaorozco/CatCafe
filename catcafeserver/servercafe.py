@@ -70,5 +70,57 @@ def login_admin():
 #     return jsonify(table_names), 200
 
 
+
+#RUTA PARA OBTENER LOS GATOS DE LA BASE DE DATOS
+@app.route('/gatos')
+def get_gatos():
+    # Conectar a la base de datos
+    con = sqlite3.connect("catcafeserver/catcafe.db")
+    con.row_factory = sqlite3.Row  # Esto permite acceder a las columnas por nombre.
+    cur = con.cursor()
+
+    # Ejecutar la consulta para obtener los ID y nombres de los gatos
+    cur.execute("SELECT id_gato, name FROM gatos")
+    gatos = cur.fetchall()
+
+    # Convertir los resultados en una lista de diccionarios
+    gatos_list = [{'id_gato': gato['id_gato'], 'name': gato['name']} for gato in gatos]
+
+    # Cerrar la conexión a la base de datos
+    cur.close()
+    con.close()
+
+    # Devolver los resultados en formato JSON
+    return jsonify(gatos_list)
+
+
+@app.route('/gatos/<int:id_gato>')
+def get_cat_info(id_gato):
+    # Conectar a la base de datos
+    con = sqlite3.connect("catcafeserver/catcafe.db")
+    cur = con.cursor()
+
+    # Ejecutar la consulta para obtener la información del gato específico
+    cur.execute("SELECT * FROM gatos WHERE id_gato = ?", (id_gato,))
+    gato = cur.fetchone()
+
+    # Aquí deberás asegurarte de que la respuesta de la base de datos se esté manejando correctamente
+    # ...
+
+    # Cerrar la conexión a la base de datos
+    cur.close()
+    con.close()
+
+    # Devolver la información en formato JSON
+    if gato:
+        gato_info = {'id': gato[0], 'name': gato[1], 'age': gato[2], 'race': gato[3]}
+        return jsonify(gato_info)
+    else:
+        return jsonify({'message': 'Gato no encontrado'}), 404
+
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)  # Ejecutamos la aplicación Flask en modo de depuración

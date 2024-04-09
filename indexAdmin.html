@@ -16,48 +16,8 @@
     </div>
 </header>
 
-<main>
-    <div class="image-container">
-        <h2>Luis Miguel</h2>
-        <button id="Gato1" class="image-button">
-            <img src="./images/1.png" alt="Image 1">
-        </button>
-    </div>
+<main id="cat-container">
 
-    <div class="image-container">
-        <h2>Juan</h2>
-        <button id="Gato2" class="image-button">
-            <img src="./images/2.png" alt="Image 2">
-        </button>
-    </div>
-
-    <div class="image-container">
-        <h2>Jose Jose</h2>
-        <button id="Gato3" class="image-button">
-            <img src="./images/3.png" alt="Image 3">
-        </button>
-    </div>
-
-    <div class="image-container">
-        <h2>Juan Gabriel</h2>
-        <button id="Gato4" class="image-button">
-            <img src="./images/4.png" alt="Image 4">
-        </button>
-    </div>
-
-    <div class="image-container">
-        <h2>Ferrrnando</h2>
-        <button id="Gato5" class="image-button">
-            <img src="./images/5.png" alt="Image 5">
-        </button>
-    </div>
-
-    <div class="image-container">
-        <h2>Tigre</h2>
-        <button id="Gato6" class="image-button">
-            <img src="./images/6.png" alt="Image 6">
-        </button>
-    </div>
 </main>
 
 <div class="food-menu">
@@ -114,23 +74,8 @@
     </div>
 </div>
 
-<script>
-    // Cuando haces clic en una imagen
-    document.querySelectorAll('.image-button').forEach(button => {
-        button.addEventListener('click', function() {
-            document.getElementById('popup-container').style.display = 'block';
-            // Aquí puedes cambiar el contenido del pop-up según la imagen que se haya clickeado
-            // Por ejemplo, podrías usar `this.querySelector('img').alt` para obtener el texto alternativo de la imagen y mostrarlo
-            document.getElementById('popup-text').textContent = 'Luis Miguel es un gato cariñoso de 1 año en busca de un hogar. Es juguetón y afectuoso, ideal para un hogar sin otros animales. Está esterilizado/castrado, vacunado y desparasitado. Se lleva bien con niños y disfruta tanto de interiores como exteriores. ¿Listo para darle a Luis Miguel un hogar amoroso?';
-        });
-    });
-    
-    // Cuando haces clic en el botón de cerrar
-    document.querySelector('.close-btn').addEventListener('click', function() {
-        document.getElementById('popup-container').style.display = 'none';
-    });
-    </script>
-    <script src="script.js"></script>
+
+<script src="indexAdmin.js"></script>
 
 
 </body>
