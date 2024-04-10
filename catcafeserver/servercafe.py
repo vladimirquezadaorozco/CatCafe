@@ -4,13 +4,10 @@ import sqlite3
 
 
 
-
 app = Flask(__name__)
+CORS(app)  # Aplica CORS a todas las rutas y métodos
 
-#CORS(app, resources={r"/api/*": {"origins": "http://127.0.0.1:5000"}}, supports_credentials=True)
-CORS(app, resources={r"/*": {"origins": "*"}}) # Permitir solicitudes desde cualquier origen en cualquier ruta
-
-#RUTA PARA EL LOGIN DEL ADMINISTRADOR
+#RUTA PARA EL REGISTER DEL ADMINISTRADOR
 @app.route('/register', methods=["POST"])
 def register_admin():
     data = request.get_json()  # Asumiendo que los datos se envían como JSON
@@ -35,6 +32,7 @@ def register_admin():
         con.close()
     
     
+#RUTA PARA EL LOGIN DEL ADMINISTRADOR
 @app.route('/login', methods=["POST"])
 def login_admin():
     data = request.get_json()  # Asumiendo que los datos se envían como JSON
@@ -94,32 +92,88 @@ def get_gatos():
     return jsonify(gatos_list)
 
 
+#CON ESTA RUTA ACCEDEMOS A LA INFORMACION DE UN GATO CON CIERTO ID
 @app.route('/gatos/<int:id_gato>')
 def get_cat_info(id_gato):
-    # Conectar a la base de datos
     con = sqlite3.connect("catcafeserver/catcafe.db")
+    con.row_factory = sqlite3.Row  # Facilita el acceso a las columnas por nombre
     cur = con.cursor()
-
-    # Ejecutar la consulta para obtener la información del gato específico
     cur.execute("SELECT * FROM gatos WHERE id_gato = ?", (id_gato,))
     gato = cur.fetchone()
-
-    # Aquí deberás asegurarte de que la respuesta de la base de datos se esté manejando correctamente
-    # ...
-
-    # Cerrar la conexión a la base de datos
     cur.close()
     con.close()
 
-    # Devolver la información en formato JSON
     if gato:
-        gato_info = {'id': gato[0], 'name': gato[1], 'age': gato[2], 'race': gato[3]}
+        gato_info = {
+            'id': gato["id_gato"],
+            'name': gato["name"],
+            'age': gato["age"],
+            'race': gato["race"],
+            'info': gato["info"]
+        }
         return jsonify(gato_info)
     else:
         return jsonify({'message': 'Gato no encontrado'}), 404
 
 
+#RUTA PARA MANDAR EL JSON DE LA SOLICITUD DE ADOPCION A LA VISTA ADMINISTRADOR
+@app.route('/enviar_solicitud', methods=["POST"])
+def enviar_solicitud():
+    data = request.get_json()  # Aquí recibes el JSON enviado desde el cliente
+    # Extrae la información del cliente y del gato del JSON recibido
+    id_gato = data.get('catId')
+    nombre_cliente = data.get('clienteNombre')
+    email_cliente = data.get('clienteEmail')
 
+    # Conectar a la base de datos
+    con = sqlite3.connect("catcafeserver/catcafe.db")
+    cur = con.cursor()
+
+    # Insertar la nueva solicitud en la tabla de solicitudes
+    try:
+        cur.execute("INSERT INTO solicitudes (id_gato, name, email) VALUES (?, ?, ?)", 
+                    (id_gato, nombre_cliente, email_cliente))
+        con.commit()
+        mensaje = 'Solicitud enviada con éxito'
+        status_code = 200
+    except sqlite3.IntegrityError as e:
+        mensaje = 'Error al enviar la solicitud'
+        status_code = 500
+        print(e)
+
+    # Cerrar la conexión a la base de datos
+    cur.close()
+    con.close()
+
+    # Devolver una respuesta
+    return jsonify({'message': mensaje}), status_code
+
+
+@app.route('/obtener_notificaciones', methods=["GET"])
+def obtener_notificaciones():
+    con = sqlite3.connect("catcafeserver/catcafe.db")
+    con.row_factory = sqlite3.Row  # Esto permite acceder a las columnas por nombre
+    cur = con.cursor()
+
+    # Ejecuta una consulta para obtener las últimas solicitudes
+    cur.execute("SELECT * FROM solicitudes")
+    solicitudes = cur.fetchall()
+
+    # Convertir los resultados en una lista de diccionarios
+    lista_solicitudes = []
+    for solicitud in solicitudes:
+        lista_solicitudes.append({
+            'id_solicitud': solicitud['id_solicitud'],
+            'id_gato': solicitud['id_gato'],
+            'nombre_cliente': solicitud['name'],
+            'email_cliente': solicitud['email']
+        })
+
+    cur.close()
+    con.close()
+
+    # Devuelve los resultados en formato JSON
+    return jsonify(lista_solicitudes)
 
 
 if __name__ == '__main__':
