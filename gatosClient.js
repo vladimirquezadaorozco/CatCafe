@@ -97,12 +97,15 @@ function fetchCatInfo(catId) {
     })
     .then(data => {  // Adjuntamos los datos del gato dentro del pop up
         const popupText = `
-        <h2>${data.name}</h2>
+        <h1>${data.name}</h1>
         <p class="race">Raza: ${data.race}</p>
         <p class="age">Edad: ${data.age} años</p>
         <p class="info">Info: ${data.info}</p>
 
-        <div>
+        &nbsp
+        <h3>Manda tu solicitud para adoptar a ${data.name}</h3>
+
+        <div class="formulario">
             <input type="text" id="cliente-nombre" placeholder="Tu nombre" />
             <input type="email" id="cliente-email" placeholder="Tu email" />
         </div>

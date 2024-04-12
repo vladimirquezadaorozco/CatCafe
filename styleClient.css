@@ -84,7 +84,7 @@ ul {
 }
 
 
-/* MAIN */
+/* MAIN DE LA PAGINA DE GATOS */
 #cat-container {
     display: flex;
     flex-direction: row; /* Alinea los elementos horizontalmente */
@@ -94,6 +94,19 @@ ul {
     gap: 20px; /* Espacio entre las tarjetas */
     padding: 20px; /* Espacio alrededor del contenido dentro del contenedor */
     background-image: url('images/styleClient.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/* MAIN DE LA PAGINA DE PRODUCTOS */
+#product-container {
+    display: flex;
+    flex-direction: row; /* Alinea los elementos horizontalmente */
+    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si no hay espacio */
+    justify-content: space-around; /* Espacia los elementos uniformemente */
+    align-items: flex-start; /* Alinea los elementos al principio de cada fila */
+    gap: 20px; /* Espacio entre las tarjetas */
+    padding: 20px; /* Espacio alrededor del contenido dentro del contenedor */
     background-size: cover;
     background-position: center;
 }
@@ -110,7 +123,7 @@ ul {
     align-items: center; /* Centra horizontalmente el contenido */
     justify-content: center; /* Centra verticalmente el contenido */
     padding: 10px; /* Disminuye el padding para que el contenedor sea más delgado */
-    background: rgba(255, 255, 255, 0.5); /* Disminuye el último número para más transparencia */
+    background: rgba(255, 255, 255, 0.8); /* Disminuye el último número para más transparencia */
 }
 
 .image-container img {
@@ -189,5 +202,7 @@ ul {
 }
 
 
-
+.formulario {
+    margin-bottom: 20px; /* Añade un margen debajo del formulario */
+  }
 

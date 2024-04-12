@@ -4,72 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CatCafe Admin</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleAdmin.css">
 </head>
 <body>
 
-<header>
-    <h1>CatCafe</h1>
-    <div class="search-box">
-        <input type="text" placeholder="Search...">
-        <button type="submit">Search</button>
+
+        <!-- Formulario para editar gatos -->
+    <div>
+        <h3>Editar Gato</h3>
+        <select id="gato-selector" onchange="seleccionarGato()">
+        <!-- Las opciones se cargarán dinámicamente -->
+        </select>
+        <input type="text" id="gato-name" placeholder="Nuevo nombre del gato" />
+        <input type="text" id="gato-age" placeholder="Nueva edad del gato" />
+        <input type="te xt" id="gato-race" placeholder="Nueva raza del gato" />
+        <input type="text" id="gato-info" placeholder="Nueva información del gato" />
+        <button onclick="editarGato()">Guardar Cambios</button>
     </div>
-</header>
 
-<main id="cat-container">
-
-</main>
-
-<div class="food-menu">
-    <header>
-        <h1>Cat Cafe Menu</h1>
-    </header>
+        <!-- Formulario para agregar gatos -->
+    <div class="spaces">
+        <h3>Agregar Nuevo Gato</h3>
+        <input type="text" id="nuevo-gato-nombre" placeholder="Nombre del gato" />
+        <input type="number" id="nuevo-gato-edad" placeholder="Edad del gato" />
+        <input type="text" id="nuevo-gato-raza" placeholder="Raza del gato" />
+        <textarea id="nuevo-gato-info" placeholder="Información del gato"></textarea>
+        <button onclick="agregarGato()">Agregar Gato</button>
+      </div>
+      
     
-    <main>
-        <section class="menu-category">
-            <h2>Appetizers</h2>
-            <ul>
-                <li>Meowgarita Pizza</li>
-                <li>Tuna Tartar</li>
-                <li>Salmon Sushi Rolls</li>
-            </ul>
-        </section>
-    
-        <section class="menu-category">
-            <h2>Main Courses</h2>
-            <ul>
-                <li>Purrfect Pasta</li>
-                <li>Catnip Chicken</li>
-                <li>Fishy Feast</li>
-            </ul>
-        </section>
-    
-        <section class="menu-category">
-            <h2>Desserts</h2>
-            <ul>
-                <li>Meowtain Mousse</li>
-                <li>Catnip Cake</li>
-                <li>Paw-some Pudding</li>
-            </ul>
-        </section>
-    </main>
-
-        <!-- Nueva división al final del documento -->
-<div id="notificaciones">
-
-</div>
-
-
-<!-- Pop-up container -->
-<div id="popup-container" class="popup-container" style="display:none;">
-    <div class="popup-content">
-        <span class="close-btn">&times;</span>
-        <p id="popup-text">Aquí va la información del gato.</p>
+    <!-- Formulario para editar productos -->
+    <div>
+        <h3>Editar Producto</h3>
+        <select id="producto-selector" onchange="seleccionarProducto()">
+        <!-- Las opciones se cargarán dinámicamente -->
+        </select>
+        <input type="text" id="producto-nombre" placeholder="Nuevo nombre del producto" />
+        <input type="number" id="producto-disponibilidad" placeholder="Nueva disponibilidad" />
+        <input type="text" id="producto-precio" placeholder="Nuevo precio" />
+        <button onclick="editarProducto()">Guardar Cambios</button>
     </div>
-</div>
+
+    <!-- Formulario para agregar un nuevo producto -->
+
+    <div class="spaces">
+        <h3>Agregar Nuevo Producto</h3>
+        <input type="text" id="nuevo-producto-nombre" placeholder="Nombre del producto" />
+        <input type="number" id="nuevo-producto-disponibilidad" placeholder="Disponibilidad" />
+        <input type="text" id="nuevo-producto-precio" placeholder="Precio" />
+        <button onclick="agregarProducto()">Agregar Producto</button>
+      </div>
+    
+
+    </div>
 
 
-<script src="gatosAdmin.js"></script>
+    <div id="notificaciones">
+
+    </div>
+
+
+
+    <script src="gatosAdmin.js"></script>
 
     
 </body>

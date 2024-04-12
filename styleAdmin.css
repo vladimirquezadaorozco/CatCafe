@@ -1,77 +1,50 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-header {
-    background-color: #333;
-    color: #EAD8C0;;
-    padding: 20px;
-    text-align: center;
-}
-main {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 20px;
-}
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-}
-.image-button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    overflow: hidden;
-    transition: transform 0.3s ease-in-out;
-    width: 500px;
-    height: 500px;
-}
-
-.image-button:hover img {
-    transform: scale(1.1); /* Make the image slightly bigger on hover */
-}
-body {
-    font-family: Arial, sans-serif;
-}
-
-.menu-category {
-    margin-bottom: 20px;
-}
-
-h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    font-size: 18px;
-    margin-bottom: 5px;
-}
-
-li::before {
-    content: "\2022";
-    color: #FFC107; /* Change the bullet color */
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-}
-
-.main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
+/* Paleta de colores basada en la imagen proporcionada */
+:root {
+    --color-fondo: #f5f2eb; /* un tono claro de fondo */
+    --color-texto: #5e503f; /* un marrón oscuro para el texto */
+    --color-acento: #c2b8a3; /* un tono neutro para detalles y botones */
+    --color-boton-hover: #b0a18c; /* un tono más oscuro para el hover del botón */
+  }
+  
+  /* Aplicar el estilo al cuerpo de la página */
+  body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Estilos para la notificación */
+  .notificacion {
+    background-color: white;
+    border-left: 4px solid var(--color-acento);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+  
+  .notificacion p {
+    margin: 5px 0;
+    color: var(--color-texto);
+  }
+  
+  .notificacion button {
+    background-color: var(--color-acento);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+    outline: none; /* quita el borde que algunos navegadores añaden al hacer foco */
+  }
+  
+  .notificacion button:hover {
+    background-color: var(--color-boton-hover);
+  }
+
+  .spaces {
+    margin-bottom: 50px; /* Añade un margen debajo del formulario */
+  }
+  
