@@ -63,8 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(data.message);
       // Redireccionando al usuario a otra página
       if (data.message === "Login successful") {
-        // Si el login es exitoso, redirige al usuario a "indexAdmin.html"
-        window.location.href = 'indexAdmin.html';
+        // Si el login es exitoso, redirige al usuario a "gatosAdmin.html"
+        window.location.href = 'gatosAdmin.html';
       } else {
         // Si el login no es exitoso, muestra un mensaje de error
         // Aquí podrás colocar el código para mostrar el mensaje de error en la UI

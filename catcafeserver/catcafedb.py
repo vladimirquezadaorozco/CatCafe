@@ -29,6 +29,21 @@ def create_tables():
             name TEXT NOT NULL,
             email TEXT NOT NULL,
             FOREIGN KEY(id_gato) REFERENCES gatos(id_gato)
+            )""",
+            
+        """CREATE TABLE IF NOT EXISTS productos(
+            id_producto INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            disponibles INTEGER
+            )""",
+            
+        """CREATE TABLE IF NOT EXISTS pedidos(
+            id_pedido INTEGER PRIMARY KEY AUTOINCREMENT,
+            id_producto INTEGER,
+            name TEXT NOT NULL,
+            cantidad INTEGER,
+            costo INTEGER,
+            FOREIGN KEY(id_producto) REFERENCES productos(id_producto)
             )"""
     }
     

@@ -125,7 +125,7 @@ def enviar_solicitud():
     nombre_cliente = data.get('clienteNombre')
     email_cliente = data.get('clienteEmail')
 
-    # Conectar a la base de datos
+    # Conectar a la base de datos 
     con = sqlite3.connect("catcafeserver/catcafe.db")
     cur = con.cursor()
 
@@ -175,6 +175,160 @@ def obtener_notificaciones():
     # Devuelve los resultados en formato JSON
     return jsonify(lista_solicitudes)
 
+#MODIFIQUE APARTIR DE AQUIIIIII
+
+#RUTA PARA OBTENER LOS PRODUCTOS DE LA BASE DE DATOS
+@app.route('/productos')
+def get_productos():
+    # Conectar a la base de datos
+    con = sqlite3.connect("catcafeserver/catcafe.db")
+    con.row_factory = sqlite3.Row  # Esto permite acceder a las columnas por nombre.
+    cur = con.cursor()
+
+    # Ejecutar la consulta para obtener los ID y nombres de los gatos
+    cur.execute("SELECT id_producto, name FROM productos")
+    productos = cur.fetchall()
+
+    # Convertir los resultados en una lista de diccionarios
+    productos_list = [{'id_producto': producto['id_producto'], 'name': producto['name']} for producto in productos]
+
+    # Cerrar la conexión a la base de datos
+    cur.close()
+    con.close()
+
+    # Devolver los resultados en formato JSON
+    return jsonify(productos_list)
+
+@app.route('/productos/<int:id_producto>')
+def get_producto_info(id_producto):
+    con = sqlite3.connect("catcafeserver/catcafe.db")
+    con.row_factory = sqlite3.Row  # Facilita el acceso a las columnas por nombre
+    cur = con.cursor()
+    cur.execute("SELECT * FROM productos WHERE id_producto = ?", (id_producto,))
+    producto = cur.fetchone()
+    cur.close()
+    con.close()
+
+    if producto:
+        producto_info = {
+            'id': producto["id_producto"],
+            'name': producto["name"],
+            'disponibles': producto["disponibles"]
+        }
+        return jsonify(producto_info)
+    else:
+        return jsonify({'message': 'Producto no encontrado'}), 404
+
+#RUTA PARA MANDAR EL JSON DEL PEDIDO A LA VISTA ADMINISTRADOR
+@app.route('/enviar_pedido', methods=["POST"])
+def enviar_pedido():
+    data = request.get_json()  # Aquí recibes el JSON enviado desde el cliente
+    # Extrae la información del cliente y del gato del JSON recibido
+    id_producto  = data.get('productoID')
+    nombre_cliente = data.get('clienteNombre')
+    cantidad = data.get('cantidad')
+
+
+    # Conectar a la base de datos
+    con = sqlite3.connect("catcafeserver/catcafe.db")
+    cur = con.cursor()
+    
+    cur.execute("SELECT costo FROM productos WHERE id_producto = ?", (id_producto,))
+
+    # Insertar la nueva solicitud en la tabla de solicitudes
+    try:
+        cur.execute("INSERT INTO pedidos (id_producto, name, cantidad) VALUES (?, ?, ?)", 
+                    (id_producto, nombre_cliente, cantidad))
+        con.commit()
+        mensaje = 'Pedido enviado con éxito'
+        status_code = 200
+    except sqlite3.IntegrityError as e:
+        mensaje = 'Error al enviar el pedido'
+        status_code = 500
+        print(e)
+    else:
+        mensaje = "Producto no encontrado o costo no disponible"
+        status_code = 404
+
+    # Cerrar la conexión a la base de datos
+    cur.close()
+    con.close()
+
+    # Devolver una respuesta
+    return jsonify({'message': mensaje}), status_code
+
+@app.route('/obtener_pedidos', methods=["GET"])
+def obtener_pedidos():
+    con = sqlite3.connect("catcafeserver/catcafe.db")
+    con.row_factory = sqlite3.Row  # Esto permite acceder a las columnas por nombre
+    cur = con.cursor()
+
+    # Ejecuta una consulta para obtener las últimas solicitudes
+    cur.execute("SELECT * FROM pedidos")
+    pedidos = cur.fetchall()
+
+    # Convertir los resultados en una lista de diccionarios
+    lista_pedidos = []
+    for pedido in pedidos:
+        lista_pedidos.append({
+            'id_pedido': pedido['id_pedido'],
+            'id_producto': pedido['id_producto'],
+            'nombre_cliente': pedido['name'],
+            'cantidad': pedido['cantidad'],
+        })
+
+    cur.close()
+    con.close()
+
+    # Devuelve los resultados en formato JSON
+    return jsonify(lista_pedidos)
+
+#Modificar cantidad de disponibles despues de una compra
+@app.route('/comprar_producto', methods=["POST"])
+def comprar_producto():
+    data = request.get_json()
+    product_id = data.get('productId')
+    cantidad_comprada = int(data.get('cantidadComprada'))
+
+    con = sqlite3.connect("catcafeserver/catcafe.db")
+    cur = con.cursor()
+
+    try:
+        # Actualizar la cantidad disponible del producto
+        cur.execute("UPDATE productos SET disponibles = disponibles - ? WHERE id_producto = ? AND disponibles >= ?",
+                    (cantidad_comprada, product_id, cantidad_comprada))
+        if cur.rowcount == 0:
+            raise ValueError("No hay suficientes productos disponibles o el producto no existe.")
+        
+        con.commit()
+        mensaje = 'Compra realizada con éxito'
+        status_code = 200
+    except Exception as e:
+        con.rollback()
+        mensaje = str(e)
+        status_code = 500
+    finally:
+        cur.close()
+        con.close()
+
+    return jsonify({'message': mensaje}), status_code
+
+@app.route('/add_product', methods=['POST'])
+def add_product():
+    data = request.get_json()
+    name = data['name']
+    price = data['price']
+    stock = data['stock']
+
+    conn = sqlite3.connect('yourdatabase.db')
+    cur = conn.cursor()
+    cur.execute('INSERT INTO products (name, price, stock) VALUES (?, ?, ?)', (name, price, stock))
+    conn.commit()
+    conn.close()
+
+    return jsonify({'message': 'Producto agregado con éxito'}), 201
+
+#HASTA ACA
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)  # Ejecutamos la aplicación Flask en modo de depuración

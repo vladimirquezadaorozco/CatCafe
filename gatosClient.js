@@ -9,6 +9,38 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchGatos();
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Obtener el botón para cerrar el pop-up
+    const closeButton = document.querySelector('.close-btn');
+    // Obtener el contenedor del pop-up
+    const popupContainer = document.getElementById('popup-container');
+
+    // Función para mostrar el pop-up
+    function showPopup() {
+        popupContainer.style.display = 'flex';
+    }
+
+    // Función para ocultar el pop-up
+    function hidePopup() {
+        popupContainer.style.display = 'none';
+    }
+
+    // Evento para cerrar el pop-up
+    closeButton.addEventListener('click', hidePopup);
+
+    // Evento para abrir el pop-up al hacer clic en una imagen de gato
+    const gatos = document.querySelectorAll('.image-container'); // Asumiendo que tus imágenes de gato tienen esta clase
+    gatos.forEach(gato => {
+        gato.addEventListener('click', () => {
+            showPopup();
+            // Aquí puedes añadir la información del gato seleccionado al pop-up
+            const popupText = document.getElementById('popup-text');
+            popupText.textContent = 'Información de ' + gato.querySelector('h2').textContent;
+        });
+    });
+});
+
+
 
 // COn esta funcion creamos la vista de los gatos, es decir, todos los div con los nombres de los gatos
 function fetchGatos() {     
@@ -85,9 +117,9 @@ function fetchCatInfo(catId) {
     });
 }
 
-//AL MOMENTO DE DARLE AL BOTON DE ENVIAR SOLICITUD EN EL POPUP
-function enviarSolicitud(catId) {
 
+// AL MOMENTO DE DARLE AL BOTON DE ENVIAR SOLICITUD EN EL POPUP
+function enviarSolicitud(catId) {
     const nombre = document.getElementById('cliente-nombre').value;
     const email = document.getElementById('cliente-email').value;
     
@@ -112,9 +144,15 @@ function enviarSolicitud(catId) {
     })
     .then(data => {
         console.log('Solicitud enviada:', data);
-        // Aquí puedes manejar la respuesta, por ejemplo, cerrar el pop-up o mostrar un mensaje de éxito
+        hidePopup(); // Cierra el pop-up después de enviar la solicitud
     })
     .catch(error => {
         console.error('Error al enviar solicitud:', error);
     });
 }
+
+// Función para ocultar el pop-up
+function hidePopup() {
+    document.getElementById('popup-container').style.display = 'none';
+}
+

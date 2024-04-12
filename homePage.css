@@ -18,12 +18,18 @@ ul {
 .header{
     display: flex;
     justify-content: space-between;
-    background-color:#fff9f2;
+    background-color: #EAD8C0;
     align-items: center;
     height: 95px;
     padding: 5px 10%;
+    position: relative; 
+    z-index: 1000;
 }
-
+.navbar {
+    position: relative; /* O 'absolute' o 'fixed' dependiendo de tu diseño */
+    z-index: 1000; /* Un valor alto para asegurar que esté sobre otros elementos */
+    /* Resto de tu CSS para navbar */
+  }
 .header .logo{
     cursor: pointer;
 }
@@ -53,7 +59,7 @@ ul {
 
 .header .nav-links a {
     font-size: 700;
-    color: #43250b;
+    color: #65451F;
     text-decoration: none;
 }
 
@@ -85,14 +91,15 @@ ul {
 
 /* MAIN */
 .content-area {
-    background-image: url('images/homePage.png'); /* Asegúrate de usar la ruta correcta */
+    background-image: url('images/homePage2.png'); /* Asegúrate de usar la ruta correcta */
     background-size: cover; /* Cubrirá toda el área disponible */
-    background-position: center; /* Centra la imagen de fondo */
     background-repeat: no-repeat; /* La imagen no se repetirá */
     height: 100vh; /* Usa la altura completa de la ventana de visualización */
     display: flex;
     align-items: center; /* Centra verticalmente el cuadro de texto */
     justify-content: center; /* Centra horizontalmente el cuadro de texto */
+    background-position: center; /* Centra la imagen de fondo */
+    margin-top: -5%;
 }
 
 main {
@@ -105,13 +112,15 @@ main {
 }
 
 .text-box {
-    background: rgba(255, 255, 255, 0.8); /* Fondo blanco con algo de transparencia */
-    padding: 30px; /* Añade espacio dentro del cuadro de texto */
-    border-radius: 15px; /* Bordes redondeados */
-    width: 50%; /* Ancho del cuadro de texto */
-    max-width: 600px; /* Ancho máximo para que no se vea demasiado ancho en pantallas grandes */
-    text-align: center; /* Centra el texto dentro del cuadro */
+    background: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    width: 50%;
+    max-width: 600px;
+    text-align: center;
+    margin-top: 160px; /* Ajusta este valor según la cantidad que necesites para bajar la caja de texto */
 }
+
 
 .text-box h1 {
     margin-bottom: 20px; /* Espacio debajo del encabezado */

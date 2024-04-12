@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+/* NAVBAR */
+*{
+    box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+     font-family: "Tilt Neon", sans-serif;
+     font-size: 20px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    background-color:#EAD8C0;
+    align-items: center;
+    height: 95px;
+    padding: 5px 10%;
+}
+
+.header .logo{
+    cursor: pointer;
+}
+
+.header .logo img{
+    height: 100px;
+    width: auto;
+    transition: all 0.3s;
+}
+
+
+.header .logo img:hover{
+    transform: scale(1.2);
+}
+
+.header .nav-links{
+    list-style: none;
+}
+
+
+.header .nav-links li{
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.header .nav-links li:hover{
+    transform: scale(1.1);
+}
+
+.header .nav-links a {
+    font-size: 700;
+    color: #43250b;
+    text-decoration: none;
+}
+
+
+.header .nav-links li a:hover{
+    color: #ffbc0e;
+}
+
+.header .btn button{
+    color: #43250b;
+    padding: 9px 25px;
+    background: transparent;
+    background-size:10p;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+#login-icon{
+    width: auto;
+    height: 35px;
+    fill: #43250b;
+}
+
+.header .btn button:hover{
+    transform: scale(1.1);
+}
+
+
+/* MAIN */
+#cat-container {
+    display: flex;
+    flex-direction: row; /* Alinea los elementos horizontalmente */
+    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si no hay espacio */
+    justify-content: space-around; /* Espacia los elementos uniformemente */
+    align-items: flex-start; /* Alinea los elementos al principio de cada fila */
+    gap: 20px; /* Espacio entre las tarjetas */
+    padding: 20px; /* Espacio alrededor del contenido dentro del contenedor */
+    background-image: url('images/styleClient.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.image-container {
+    width: calc(25% - 40px); /* Cambia el porcentaje para que el ancho sea más estrecho */
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px; /* Disminuye el borde redondeado para un efecto más rectangular */
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex; /* Utiliza flex para alinear verticalmente */
+    flex-direction: column; /* Organiza el contenido en una columna */
+    align-items: center; /* Centra horizontalmente el contenido */
+    justify-content: center; /* Centra verticalmente el contenido */
+    padding: 10px; /* Disminuye el padding para que el contenedor sea más delgado */
+    background: rgba(255, 255, 255, 0.5); /* Disminuye el último número para más transparencia */
+}
+
+.image-container img {
+    width: 100%; /* La imagen ocupará el ancho completo del contenedor */
+    height: auto; /* La altura será automática para mantener la relación de aspecto */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.image-container h2 {
+    text-align: center; /* Centra el nombre del gato */
+    padding: 10px; /* Espacio alrededor del nombre */
+    margin: 0; /* Remueve cualquier margen por defecto */
+}
+
+.image-button {
+    display: block; /* Hace que el botón llene el ancho del contenedor */
+    border: none; /* Remueve el borde del botón */
+    background: none; /* Fondo transparente */
+    padding: 10px; /* Espacio alrededor de la imagen */
+    cursor: pointer; /* Cambia el cursor a puntero */
+}
+
+.image-button img {
+    width: 100%; /* Hace que la imagen llene el ancho del botón */
+    border-radius: 15px; /* Bordes redondeados para la imagen */
+    transition: transform 0.3s ease; /* Transición suave para el efecto de hover */
+}
+
+.image-button:hover img {
+    transform: scale(1.05); /* Efecto de zoom al pasar el mouse por encima */
+}
+
+.main, .content-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    margin: 10vh auto 0; /* Centrado con un poco de espacio en la parte superior */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+/* POP-UP */
+/* Esta es la regla para el contenedor del pop-up que oscurece el fondo y centra el contenido */
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+/* Esta es la regla para el contenido del pop-up que debe aparecer en el centro de la pantalla */
+.popup-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 600px;
+    min-width: 300px;
+    z-index: 1001;
+}
+
+
+
+
